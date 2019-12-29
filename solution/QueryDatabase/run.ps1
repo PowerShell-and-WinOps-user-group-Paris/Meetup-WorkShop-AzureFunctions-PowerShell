@@ -13,14 +13,9 @@ try {
 
     $ctx = New-AzStorageContext -StorageAccountName $FunctionStorageConfigHash.AccountName -StorageAccountKey $FunctionStorageConfigHash.AccountKey
 
-    $cloudTable = (Get-AzStorageTable -Name "foodlist" -Context $ctx).CloudTable    
+    $cloudTable = (Get-AzStorageTable -Name "wish" -Context $ctx).CloudTable    
 
-    if (-not $ItemType) {
-        $data = Get-AzTableRow -table $cloudTable -PartitionKey gift | ConvertTo-Json
-    }
-    else {
-        $data = Get-AzTableRow -table $cloudTable -PartitionKey gift -columnName "typeofpresent" -value $ItemType -operator Equal | ConvertTo-Json
-    }
+    $data = Get-AzTableRow -table $cloudTable -PartitionKey gift | ConvertTo-Json
 
 
     $HttpResponse = [HttpResponseContext]@{ 
