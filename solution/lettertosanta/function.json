@@ -1,0 +1,33 @@
+{
+    "bindings": [
+      {
+        "authLevel": "function",
+        "type": "httpTrigger",
+        "direction": "in",
+        "name": "Request",
+        "methods": [
+          "post"
+        ]
+      },
+      {
+        "type": "http",
+        "direction": "out",
+        "name": "Response"
+      },
+      {
+        "type": "table",
+        "name": "outputTable",
+        "tableName": "wish",
+        "connection": "AzureWebJobsStorage",
+        "direction": "out"
+      },
+      {
+        "type": "queue",
+        "name": "outputQueueItem",
+        "queueName": "elvesqueue",
+        "connection": "AzureWebJobsStorage",
+        "direction": "out"
+      }
+    ],
+    "disabled": false
+  }
