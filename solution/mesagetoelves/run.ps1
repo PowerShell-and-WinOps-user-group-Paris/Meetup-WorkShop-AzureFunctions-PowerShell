@@ -11,9 +11,10 @@ try {
             "icon_emoji"= ":santa:"
         } | ConvertTo-Json 
 
+        $VaultSecret = Get-AzKeyVaultSecret -VaultName santa-vault2 -name SlackUri
         
 
-        Invoke-RestMethod -Method Post -Uri $ENV:SlackUri -Body $HashSlackMessage
+        Invoke-RestMethod -Method Post -Uri $VaultSecret.SecretValueText -Body $HashSlackMessage
     }
 
 }
